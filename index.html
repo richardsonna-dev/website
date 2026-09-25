@@ -1,0 +1,42 @@
+<!DOcTPYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css"/>
+    </head>
+    <body>
+        <h1>Space themed game</h1>
+
+        <canvas id="myCanvas" width="1920" height="1080" style="border:1px solid #000000;">
+</canvas>
+<script>
+    
+var c = document.getElementById("myCanvas");
+var ctx = c.getContext("2d");
+ctx.font = "50px Arial";
+ctx.strokeText("Escape the sinking Space Ship", 10, 50);
+</script>
+<script>
+var c = document.getElementById("myCanvas");
+var ctx = c.getContext("2d");
+
+// Create gradient
+var grd = ctx.createLinearGradient(0, 0, 200, 0);
+grd.addColorStop(0, "blue");
+grd.addColorStop(1, "darkblue");
+
+// Fill with gradient
+ctx.fillStyle = grd;
+ctx.fillRect(0, 0, 1920, 1080);
+</script>
+<script>
+
+
+var c = document.getElementById("myCanvas");
+var ctx = c.getContext("2d");
+ctx.font = "50px Arial";
+ctx.strokeText("Escape the sinking Space Ship", 10, 50);
+
+</script>
+
+    </body>
+</html>
