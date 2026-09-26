@@ -1,3 +1,23 @@
-img {
-    width: 2000px;
+
+
+.game-container {
+    position: relative;
+}
+
+#start-btn{
+    position: absolute;
+    left: 500;
+    top: 300;
+}
+
+#startButton {
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    width: 10px; 
+    height: 100px;
 }
