@@ -14,26 +14,19 @@
 </div>
 </canvas>
 <script>
+background-image: url("blob:chrome-untrusted://media-app/d25533a7-5209-4155-9786-f6fdee70d977");
+    background-repeat: no-repeat;
+    background-size: cover;
+
     
 var c = document.getElementById("myCanvas");
 var ctx = c.getContext("2d");
 ctx.font = "50px Arial";
 ctx.strokeText("Escape the sinking Space Ship", 10, 50);
 </script>
-<script>
-var c = document.getElementById("myCanvas");
-var ctx = c.getContext("2d");
 
-// Create gradient
-var grd = ctx.createLinearGradient(0, 0, 200, 0);
-grd.addColorStop(0, "blue");
-grd.addColorStop(1, "darkblue");
 
-// Fill with gradient
-ctx.fillStyle = grd;
-ctx.fillRect(0, 0, 1920, 1080);
-</script>
-<script>
+
 
 
 var c = document.getElementById("myCanvas");

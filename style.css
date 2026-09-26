@@ -8,6 +8,7 @@
     position: absolute;
     left: 500;
     top: 300;
+    cursor: pointer;
 }
 
 #startButton {
