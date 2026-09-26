@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <title>Moving Alien</title>
+
+     <style>
+        body {
+            margin: 0;
+            background-color: black;
+            overflow: hidden;
+        }
+
+        .alien {
+            position: absolute;
+            font-size: 80px;
+            animation: move 5s linear infinite;
+        }
+
+        @keyframes move {
+            0% {
+                left: -100px;
+                top: 50%;
+                transform: scale(2);
+            }
+
+            50% {
+                transform: scale(3);
+            }
+
+            100% {
+                left: 100%;
+                top: 50%;
+                transform: scale(7);
+            }
+        }
+    </style>
+
+</head>
+<img src="img/alien.png" class="alien" alt="Alien">
+<body>
+   
+</body>
+</html>

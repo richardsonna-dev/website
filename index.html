@@ -1,42 +1,140 @@
-<!DOcTPYPE html>
+<!DOCTYPE html>
 <html>
-    <head>
-        <link rel="stylesheet" href="style.css"/>
-    </head>
-    <body>
-        <h1>Space themed game</h1>
-<div class="game-container">
-    <canvas id="myCanvas" width="1920" height="1080"></canvas>
-    <button class="startButton">
-        <img id="start-btn" src="https://static.vecteezy.com/system/resources/thumbnails/017/520/181/small/button-for-starting-game-clicking-play-vector.jpg">
-    </button>
-</script>
-</div>
-</canvas>
-<script>
-background-image: url("blob:chrome-untrusted://media-app/d25533a7-5209-4155-9786-f6fdee70d977");
-    background-repeat: no-repeat;
-    background-size: cover;
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas Astro Game</title>
+</head>
+<body>
+    <canvas id="myCanvas" width="990" height="500" style="border:1px solid #000000;"></canvas>
 
-    
-var c = document.getElementById("myCanvas");
-var ctx = c.getContext("2d");
-ctx.font = "50px Arial";
-ctx.strokeText("Escape the sinking Space Ship", 10, 50);
-</script>
+    <script>
+        // Globals
+        var char_x = 50;
+        var char_y = 350;
+        var a_x = 300;
+        var a_y = 50;
+        var a_dir = 'down';
+        const char_width = 165;
+        const char_height = 110;
+        var gameover = false; 
+
+        var c = document.getElementById("myCanvas");
+        var ctx = c.getContext("2d");
+
+        // Preload Assets
+        const bgImage = new Image();
+        bgImage.src = "assets/bg.jpeg";
+
+        const img = new Image();
+        img.src = 'assets/Astro.png';
+
+        const alienimage = new Image();
+        alienimage.src = 'assets/alien.png';
+
+        // Ensure both images are loaded before starting the game loop
+        let imagesLoaded = 0;
+        function imageLoaded() {
+            imagesLoaded++;
+            if (imagesLoaded >= 2) {
+                gameLoop();
+            }
+        }
+        bgImage.onload = imageLoaded;
+        img.onload = imageLoaded;
+        alienimage.onload = imageLoaded;
+
+        // Alien loop
+        setInterval(function () {
+          if(a_dir=='down'){
+            a_y+=4
+          }
+
+          if(a_dir=='up'){
+            a_y-=4
+          }
+
+          // Handle change
+          if (a_y>c.height){a_dir='up'}
+          if (a_y<0){a_dir='down'}
+        }, 100);
+
+  
 
 
+        // Render Functions
+        function drawBackground(){
+            ctx.drawImage(bgImage, 0, 0, c.width, c.height);
+        }
 
+        function drawAstro(){
+            ctx.drawImage(img, char_x, char_y, char_width, char_height);
 
+        }
 
-var c = document.getElementById("myCanvas");
-var ctx = c.getContext("2d");
-ctx.font = "50px Arial";
-ctx.strokeText("Escape the sinking Space Ship", 10, 50);
+        function drawalien(){
+          ctx.drawImage(alienimage, a_x, a_y, char_width, char_height);
+        }
 
-</script>
+        
+        function hasPlayerWon(){
+          // Make it ereal
+          if (char_x>(c.width-150)&& char_y>(c.height-150)){
+            !gameover && alert("youwon")
+            gameover = true
+          }
+        }
 
-</script>
+        function hasPlayerLost(){
+          //make it real
+          if (Math.abs(char_x-a_x) <= 30
+          && Math.abs(char_y-a_y) <= 40){ 
+            !gameover && alert("youlost");
+            gameover = true
+          }
+        }
 
+        // Game Loop: Handles clearing and redrawing
+        function gameLoop() {
+            // 1. Clear the canvas entirely
+            ctx.clearRect(0, 0, c.width, c.height);
+            
+            // 2. Draw the environment
+            drawBackground();
+            
+            // 3. Draw the player
+            drawAstro();
+
+            drawalien();
+
+            hasPlayerWon();
+
+            hasPlayerLost();
+
+            // Loop smoothly at the monitor's refresh rate
+            requestAnimationFrame(gameLoop);
+        }
+
+        // Listen for Keyboard Events (bound to window for reliable focus)
+        window.addEventListener("keydown", function (event) {
+            // Prevent arrow keys from scrolling the webpage
+            if(["ArrowUp","ArrowDown","ArrowLeft","ArrowRight"].includes(event.code)) {
+                event.preventDefault();
+            }
+
+            if (event.code === "ArrowRight") {
+                char_x += 10;
+            } else if (event.code === "ArrowLeft") {
+                char_x -= 10;
+            } else if (event.code === "ArrowDown") {
+                char_y += 10;
+            } else if (event.code === "ArrowUp") {
+                char_y -= 10;
+            }
+            
+            console.log('char_x:', char_x, 'char_y:', char_y);
+
+          
+        });
+    </script>
 </body>
 </html>
